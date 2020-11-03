@@ -1,0 +1,158 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>About the Project</title>
+
+		<!-- Load CSS files -->
+		<link rel="stylesheet"
+			href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+		<link rel="stylesheet" href="aboutstyle.css">
+
+	</head>
+	<body>
+
+		<div class="container">
+			<h1><b>About</b></h1>
+			<article class="case-container">
+
+				<h4>Goal & Motivations</h4>
+				<p>
+					The goal of this project is to examine venture funding around the globe
+					within 10 years.
+				</p>
+				<p>
+					We chose a <a href="https://public.tableau.com/en-us/s/resources?qt-overview_resources=1#qt-overview_resources" target="_blank">
+					<strong>Startup Venture Funding dataset, </strong> </a>from Tableau
+					Public, which contains information about startup companies, rounds,
+					investments, and acquisitions. Firms need financial backing for many
+					different reasons such as starting a business and paying for new equipment.
+					Venture Capital financing has helped some of the world's most successful
+					companies to grow and play an increasingly important role in the economy.
+					Therefore, from doing this project, we hope to learn more about multiple
+					trends of venture funding among different categories in the 10 year
+					timeline
+					within interactive visualization.
+				</p>
+			</article>
+			<article class="case-container">
+				<h4>Design & Interactive</h4>
+				<p>
+					We decided to include three visualizations, interactive bar chart, stacked
+					area chart, and line chart. We wanted to leave plenty of room for
+					interaction for the users. Our design rationale is as follows:
+				</p>
+				<div class="row">
+					<div class="column">
+						<p>
+							<ul>
+								<h5>BAR CHART</h5>
+								<li>
+									The bars show the top 10 respective count of funding rounds for every
+									selection chosen by the user.
+								</li>
+								<li>
+									The user can choose between different company regions, market types,
+									and
+									countries to see the different counts of investment rounds.
+								</li>
+								<li>
+									If the user is interested in a particular year, the user can have the
+									slider to set the years to show specific data.
+								</li>
+								<li>
+									The user can see specific information about the selection by hovering
+									over to each bars.
+								</li>
+							</ul>
+						</p>
+					</div>
+					<div class="column">
+						<p>
+							<ul>
+								<h5>STACKED AREA CHART</h5>
+								<li>
+									The areas show the top 10 respective amount (USD) of investments over
+									time for every selection chosen by the user.
+								</li>
+								<li>
+									The user can select the company region or market type and look at the
+									respective investments over time.
+								</li>
+								<li>
+									If the user is interested in particular attribute, the user can hover
+									over to each legend. The user can also visualize the attribute by
+									clicking the area or the legend.
+								</li>
+								<li>
+									If the user is interested in specific time period, the user can zoom in
+									by dragging the chart from the start time to the end.
+								</li>
+							</ul>
+						</p>
+					</div>
+
+					<div class="column">
+						<p>
+							<ul>
+								<h5>LINE CHART</h5>
+								<li>
+									The animated lines display information as a series of data points which
+									represent the aggregated number of the funding round types of each
+									year.
+								</li>
+								<li>
+									The user is able to check and uncheck specific funding round types.
+								</li>
+								<li>
+									The user can see specific information about the funding round types by
+									hovering over to each point.
+								</li>
+							</ul>
+						</p>
+					</div>
+				</div>
+			</article>
+			<article class="case-container">
+				<h4>Takeaways & Drawbacks</h4>
+				<p>
+					Before constructing the code, we tried sketching the design of the
+					visualization to have a proper framework in mind. This vastly helped us
+					during the development process, as we were able to go back and refer back
+					to the set structure.
+				</p>
+				<p>
+					This dataset allowed us to explore the trends of venture funding in
+					different categories, and it was interesting to see different market types,
+					regions, and countries invested or raised funding rounds throughout the
+					time. It was also interesting to find out the trend of funding and
+					investing on different market types or funding round types.
+				</p>
+				<p>
+					The biggest struggle of this project was the pre-processing of the dataset.
+					There were too many data points in the dataset, so we divided the file into
+					multiple csv files and edited them to obtain the information we needed.
+					Since there were too many of them, we struggled to show how much of the
+					data to the users. After much thought, we decided to show the top 10
+					selections within 10 years.
+				</p>
+
+
+				<p class='tab'>The workload distribution among the team members was pretty
+					even. We worked together on brainstorming the big picture framework and
+					helped each other while working separately on different parts.
+				</p>
+				
+			</article>
+			<div id='last'>
+				<a href="index.html" id="back"
+				style="font-size:
+				1.5em; color: rgb(27, 88, 202)">
+				Click here to go back
+				</a>
+			</div>
+		</div>
+	</body>
+</html>

@@ -18,31 +18,79 @@
    
     <!-- Load Javascript files -->
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.1.1/d3.min.js"></script>
+    <script defer src="https://unpkg.com/d3-simple-slider"></script>
+
 
     <!-- Your code -->
     <link rel="stylesheet" href="style.css" />
-    <!-- <script defer src="barchart.js"></script> -->
-    <script defer src="/linechart/linechart.js" type="module"></script>
+    <script defer src="barchart/barchart.js" type="module"></script>
+    <script defer src="stackchart/stackChart.js" type="module"></script>
+    <script defer src="linechart/lineChart.js" type="module"></script>
+
   </head>
   <body>
-    <h1>
-      Investments Around the World 
-    </h1>
-    <h2>What are the top regions, categories, investors, and countries by rounds throughout different years?</h2>
+    <section class='section-container'>
+      <h1>
+        Investments Around the World 
+      </h1>
+    </section>
+    <section class='section-container'>
+      <img src="img/invest1.jpg" alt="Investment" width="500" height="300">
+      <img src="img/invest2.jpg" alt="Investment" width="500" height="300">
+    </section>
 
-      <label for="group-by">Group By</label>
-        <select id="group-by">
-        <option value="stores">Regions</option>
-        <option value="revenue">Categories</option>
-        <option value="investors">Investors</option>
-        <option value="countries">Countries</option>
+    <section class='section-container'>
+      <h4>By Mooyeong Lee, Sung Joon Park, Brishti Saha, and Ga Young Lee</h4>
+      <a href="about.html" id = "about" style =  "color:rgb(79, 176, 214); font-size: 1.4em">Click here to see the project info!</a>
+    </section>
+
+
+    <!-- Bar Chart -->
+    <section class="vis-container">
+      <h2>Top 10 Funding Rounds in Bar Chart</h2>
+      <div class="bar-chart-container">
+        <div class='tooltip'></div>
+      </div>
+      <div class="group-by-container">
+        <label for="group-by" class="label">Group By</label>
+        <select id="group-by" class="group-by">
+            <option value="regions">Company Regions</option>
+            <option value="markets">Market Types</option>
+            <option value="countries">Countries</option>
         </select>
+      </div>
+      <div id='slider'>
+        <p id='slider-value'>
+          Year: 2014
+        </p>
+      </div>
+    </section>
+    <!-- End of Bar Chart -->
 
-      <div class="chart"></div>
-      <div class="line-container"></div>
-        
-        
+    <!-- Stack Chart -->
+    <section class="vis-container">
+      <h2>Top 5 Investments trend in Stacked Area Chart</h2>
+      <div class="stack-container"></div>
+      <div class="group-by-container">
+        <label class="stack-option label" for="stack-group-by" >Group By</label>
+        <select id="stack-group-by"  class="group-by">
+          <option value="region">Company Regions</option>
+          <option value="market">Company Market Type</option>
+        </select>
+      </div>
+    </section>
+    <!-- End of Stack Chart -->
 
+      <!-- Line Chart -->
+      <section class="vis-container">
+        <h2>Fund type count from 2005 - 2014 in Line Chart</h2>
+        <div class='line-chart-container'></div>
+        <div class="line-tooltip"></div>
+        <div id='form-container' class ="group-by-container"></div>
+      </section>
+      <!-- End of Line Chart -->
+    
 
+    <h4>That's it! Hope you enjoyed our visualization!</h4>
   </body>
   </html>

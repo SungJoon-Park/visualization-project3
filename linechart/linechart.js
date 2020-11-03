@@ -1,47 +1,73 @@
 import lineChartD3 from './lineChartD3.js';
 
-d3.csv('investments.csv', d3.autoType).then((data) => {
-  console.log('This is line chart', data);
-  let investments = data;
-  console.log('investments', investments);
-  const regions = {};
-
-  investments.forEach((el) => {
-    //   investments.forEach((el, i) => {
-
-    const cpRegion = el['company_region'];
-    if (!cpRegion) return;
-
-    let funded = el['raised_amount_usd'];
-    if (isNaN(funded)) {
-      if (funded) {
-        funded = parseFloat(funded.split(',').join(''));
-      } else {
-        funded = 0;
-      }
+d3.csv('csvAssets/rounds-line.csv', d3.autoType).then((data) => {
+  ////// Data Processing By Year
+  const obj = {};
+  data.forEach((element) => {
+    const year = element['funded_year'];
+    if (!year || year === 2015) return;
+    if (obj[year] === undefined) {
+      obj[year] = {};
     }
-
-    const year = el['funded_year'];
-    if (year === 2014) {
-      if (regions[cpRegion]) {
-        regions[cpRegion] += funded;
-      } else {
-        regions[cpRegion] = funded;
-      }
+    const fundType = element['funding_round_type'];
+    if (!obj[year][fundType]) {
+      obj[year][fundType] = 0;
     }
+    obj[year][fundType] += 1;
   });
 
-  const keys = Object.keys(regions);
-  keys.sort((a, b) => regions[b] - regions[a]);
+  const keys = Object.keys(obj);
 
-  let values = keys.map((e) => {
-    return [e, regions[e]];
+  keys.forEach((el) => {
+    const date = new Date(el, 1, 1);
+    obj[el]['date'] = date;
   });
 
-  console.log('REGIONS', regions);
+  const processedData = keys.map((el) => obj[el]);
 
-  values = values.slice(0, 5);
+  let fundTypes = [
+    'venture',
+    'angel',
+    'seed',
+    'private_equity',
+    'equity_crowdfunding',
+    'debt_financing',
+  ];
 
-  const lineD3 = lineChartD3('.line-container');
-  lineD3.update(data, keys.slice(0, 5));
+  const colorScale = d3.scaleOrdinal(d3.schemeTableau10).domain(fundTypes);
+
+  const lineD3 = lineChartD3('.line-chart-container', fundTypes);
+  lineD3.update(processedData, fundTypes);
+
+  /// Create labels
+  fundTypes.forEach((fundType) => {
+    let upperCased = fundType.split('_').join(' ');
+    upperCased = upperCased.charAt(0).toUpperCase() + upperCased.slice(1);
+
+    d3.select('#form-container')
+      .append('label')
+      .attr('for', fundType)
+      .attr('class', 'check-label')
+      .text(upperCased)
+      .style('color', colorScale(fundType))
+      .append('input')
+      .attr('type', 'checkbox')
+      .attr('class', 'checkbox')
+      .attr('id', fundType)
+      .attr('value', fundType)
+      .attr('checked', 'true');
+  });
+
+  /// Event Listener
+  document.querySelectorAll('.checkbox').forEach((ch) => {
+    ch.addEventListener('change', function () {
+      if (this.checked) {
+        fundTypes.push(this.value);
+        lineD3.update(processedData, fundTypes);
+      } else {
+        fundTypes = fundTypes.filter((e) => e !== this.value);
+        lineD3.update(processedData, fundTypes);
+      }
+    });
+  });
 });
